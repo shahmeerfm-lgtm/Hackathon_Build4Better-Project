@@ -108,17 +108,44 @@ function inspectElement(title, level, description, tip) {
   if (tipEl) tipEl.innerText = tip;
 }
 
-// Success & Mistake Handlers (Adjusts Confidence Score)
+// Success & Mistake Modal Handlers
 function triggerSuccess(title, message) {
   confidenceScore = Math.min(100, confidenceScore + 5);
   updateScoreUI();
-  alert(`✅ ${title}\n\n${message}`);
+  showModal(title, message, 'success');
 }
 
 function triggerOops(title, message) {
   confidenceScore = Math.max(0, confidenceScore - 10);
   updateScoreUI();
-  alert(`⚠️ ${title}\n\n${message}`);
+  showModal(title, message, 'danger');
+}
+
+function showModal(title, message, type) {
+  const modal = document.getElementById('feedback-modal');
+  const titleEl = document.getElementById('modal-title');
+  const msgEl = document.getElementById('modal-message');
+  const iconBg = document.getElementById('modal-icon-bg');
+  const iconEl = document.getElementById('modal-icon');
+
+  if (!modal) return;
+
+  titleEl.innerText = title;
+  msgEl.innerText = message;
+  iconBg.className = `modal-icon-container ${type}`;
+
+  if (type === 'success') {
+    iconEl.className = 'fa-solid fa-shield-check';
+  } else {
+    iconEl.className = 'fa-solid fa-triangle-exclamation';
+  }
+
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  const modal = document.getElementById('feedback-modal');
+  if (modal) modal.style.display = 'none';
 }
 
 // Update Header Confidence Score Display
@@ -147,4 +174,4 @@ function setMode(mode) {
 // Initialize Default State on Page Load
 document.addEventListener('DOMContentLoaded', () => {
   loadScenario('banking');
-});
+});S

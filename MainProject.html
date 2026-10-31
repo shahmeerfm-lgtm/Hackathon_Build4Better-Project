@@ -41,7 +41,7 @@
   <!--app container -->
   <div class="app-container">
     
-    <!--left sidebar -->
+    <!-- LEFT SIDEBAR COMPONENT -->
     <aside class="sidebar">
       <div class="sidebar-section">
         <h3><i class="fa-solid fa-map-location-dot"></i> Choose Practice Scenario</h3>
@@ -90,14 +90,14 @@
       </div>
     </aside>
 
-    <!-- cnetral sandbox -->
+    <!--cantral sandbox -->
     <main class="sandbox-main">
       <div class="browser-chrome">
         <div class="browser-indicators">
           <span class="badge-safe"><i class="fa-solid fa-lock"></i> SAFE ENVIRONMENT — NO REAL DATA</span>
         </div>
         <div class="browser-url-bar">
-          <i class="fa-solid fa-lock" style="color: var(--accent-green); font-size: 0.8rem;"></i>
+          <i class="fa-solid fa-lock" style="color: #34d399; font-size: 0.8rem;"></i>
           <span id="sim-url">https://secure.firstbank.com/transfer</span>
           <span class="sandbox-copy-badge">SANDBOX COPY</span>
         </div>
@@ -109,22 +109,26 @@
       <div class="browser-viewport">
         <div id="browser-content">
           
-          <!--scen1: bank transfer-->
+          <!--scen1: bank transfer -->
           <div class="scenario-view" id="view-banking" style="max-width: 500px; margin: 0 auto;">
-            <h2 style="margin-bottom: 0.5rem; color: #0f172a;">First Bank — Money Transfer</h2>
-            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Send money quickly and safely using your online account.</p>
+            <h2 style="margin-bottom: 0.5rem; color: #111827; font-size: 1.25rem;">First Bank — Money Transfer</h2>
+            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.25rem;">Send money quickly and safely using your online account.</p>
 
-            <div class="mock-app-card">
-              <label style="font-weight: 600; font-size: 0.85rem;">Recipient Name</label>
-              <input type="text" class="mock-input" value="Sarah Jenkins (Daughter)">
+            <div class="mock-app-card interactive-element"
+                 onmouseenter="inspectElement('Recipient Account', 'Safe', 'Recipient account details match verified family profile.', 'Always confirm the exact name and account number before authorizing money transfers.')"
+                 onclick="inspectElement('Recipient Account', 'Safe', 'Recipient account details match verified family profile.', 'Always confirm the exact name and account number before authorizing money transfers.')">
+              <label style="font-weight: 600; font-size: 0.8rem; color: #374151;">Recipient Name</label>
+              <input type="text" class="mock-input" value="Sarah Jenkins (Daughter)" readonly>
             </div>
 
-            <div class="mock-app-card">
-              <label style="font-weight: 600; font-size: 0.85rem;">Amount ($USD)</label>
-              <input type="text" class="mock-input" value="20.00">
+            <div class="mock-app-card interactive-element"
+                 onmouseenter="inspectElement('Transfer Amount', 'Safe', 'Amount verified against account available balance.', 'Double check transaction limits and fees before confirming.')"
+                 onclick="inspectElement('Transfer Amount', 'Safe', 'Amount verified against account available balance.', 'Double check transaction limits and fees before confirming.')">
+              <label style="font-weight: 600; font-size: 0.8rem; color: #374151;">Amount ($USD)</label>
+              <input type="text" class="mock-input" value="20.00" readonly>
             </div>
 
-            <button class="mock-btn" style="width: 100%; margin-top: 1rem;" onclick="triggerSuccess('Transfer Completed Safely!', 'You verified recipient credentials and completed a secure bank transaction.')">Confirm &amp; Send $20.00</button>
+            <button class="mock-btn" style="width: 100%; margin-top: 0.5rem;" onclick="triggerSuccess('Transfer Completed Safely!', 'You verified recipient credentials and completed a secure bank transaction.')">Confirm &amp; Send $20.00</button>
           </div>
 
           <!--scen1: phishing scam -->
@@ -230,7 +234,7 @@
       </div>
     </main>
 
-    <!-- right panel -->
+    <!--right panel -->
     <aside class="inspector-panel">
       <div class="panel-header">
         <i class="fa-solid fa-microscope icon-inspector"></i>
@@ -261,6 +265,18 @@
       </div>
     </aside>
 
+  </div>
+
+  <!--custom feesdback -->
+  <div class="modal-overlay" id="feedback-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-icon-container" id="modal-icon-bg">
+        <i class="fa-solid fa-shield-check" id="modal-icon"></i>
+      </div>
+      <h3 id="modal-title">Success!</h3>
+      <p id="modal-message">Description message goes here.</p>
+      <button class="mock-btn" onclick="closeModal()" style="width: 100%;">Continue Simulation</button>
+    </div>
   </div>
 
   <!-- JavaScript Logic Link -->
