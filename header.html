@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeSandbox Header Component</title>
+  <link rel="stylesheet" href="header.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-bar">
+    <!-- Logo & Title -->
+    <div class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="logo-text">
+        <h1>SafeSandbox</h1>
+        <p>Flight Simulator for Everyday Tech</p>
+      </div>
+    </div>
+
+    <!-- Mode Selector Pills -->
+    <div class="mode-pills">
+      <button class="pill-btn active" id="btn-guided">
+        <i class="fa-solid fa-compass"></i> Guided Tasks
+      </button>
+      <button class="pill-btn" id="btn-free">
+        <i class="fa-solid fa-gamepad"></i> Free Exploration
+      </button>
+    </div>
+
+    <!-- Confidence Score Widget -->
+    <div class="user-confidence">
+      <i class="fa-solid fa-bolt icon-confidence"></i>
+      <div class="confidence-info">
+        <span class="label">Confidence Score</span>
+        <span class="val">85 / 100</span>
+      </div>
+    </div>
+  </header>
+
+</body>
+</html>

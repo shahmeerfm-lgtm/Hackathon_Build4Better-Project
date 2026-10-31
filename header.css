@@ -1,0 +1,120 @@
+:root {
+  --bg-dark: #0f172a;
+  --bg-panel: #1e293b;
+  --primary: #3b82f6;
+  --accent-green: #10b981;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #475569;
+}
+
+body {
+  background-color: var(--bg-dark);
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* TOP HEADER COMPONENT */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* 1. Left Section: Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-icon {
+  background-color: var(--primary);
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.logo-text h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.logo-text p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 2px 0 0 0;
+}
+
+/* 2. Center Section: Mode Pills */
+.mode-pills {
+  background-color: var(--bg-dark);
+  padding: 4px;
+  border-radius: 30px;
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.pill-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-btn.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* 3. Right Section: Confidence Score */
+.user-confidence {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+.icon-confidence {
+  color: var(--accent-green);
+  font-size: 1.3rem;
+}
+
+.confidence-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.confidence-info .label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.confidence-info .val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
