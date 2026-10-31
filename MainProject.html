@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeSandbox — App Layout</title>
+  <title>SafeSandbox — Flight Simulator for Everyday Tech</title>
   <link rel="stylesheet" href="MainStyle.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<!--combining files header and sideabar-->
-  <!--header -->
+
+  <!-- header -->
   <header class="top-bar">
     <div class="logo">
       <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -21,8 +21,12 @@
     </div>
 
     <div class="mode-pills">
-      <button class="pill-btn active"><i class="fa-solid fa-compass"></i> Guided Tasks</button>
-      <button class="pill-btn"><i class="fa-solid fa-gamepad"></i> Free Exploration</button>
+      <button class="pill-btn active" id="btn-guided" onclick="setMode('guided')">
+        <i class="fa-solid fa-compass"></i> Guided Quest
+      </button>
+      <button class="pill-btn" id="btn-free" onclick="setMode('free')">
+        <i class="fa-solid fa-gamepad"></i> Free Exploration
+      </button>
     </div>
 
     <div class="user-confidence">
@@ -34,15 +38,15 @@
     </div>
   </header>
 
-  <!--app container(Holds Sidebar & future Center/Right sections) -->
+  <!-- ap container -->
   <div class="app-container">
     
-    <!--sidebar--> 
+    <!-- sidebar -->
     <aside class="sidebar">
       <div class="sidebar-section">
         <h3><i class="fa-solid fa-map-location-dot"></i> Choose Practice Scenario</h3>
         <div class="scenario-list">
-          <button class="scenario-card active">
+          <button class="scenario-card active" id="scen-banking" onclick="loadScenario('banking')">
             <div class="scen-icon bank"><i class="fa-solid fa-university"></i></div>
             <div class="scen-info">
               <h4>Bank Transfer</h4>
@@ -51,7 +55,7 @@
             <i class="fa-solid fa-chevron-right arrow"></i>
           </button>
 
-          <button class="scenario-card">
+          <button class="scenario-card" id="scen-email" onclick="loadScenario('email')">
             <div class="scen-icon mail"><i class="fa-solid fa-envelope-open-text"></i></div>
             <div class="scen-info">
               <h4>Spotting Phishing Scams</h4>
@@ -60,7 +64,7 @@
             <i class="fa-solid fa-chevron-right arrow"></i>
           </button>
 
-          <button class="scenario-card">
+          <button class="scenario-card" id="scen-gov" onclick="loadScenario('gov')">
             <div class="scen-icon gov"><i class="fa-solid fa-id-card"></i></div>
             <div class="scen-info">
               <h4>Gov Portal Password Reset</h4>
@@ -71,14 +75,14 @@
         </div>
       </div>
 
-      <div class="quest-box">
+      <div class="quest-box" id="quest-box">
         <div class="quest-header">
           <i class="fa-solid fa-flag-checkered"></i>
-          <h4>Send $20 safely to a family member</h4>
+          <h4 id="quest-title">Send $20 safely to a family member</h4>
         </div>
         <p id="quest-desc">Practice inspecting transfer fields and confirming details before hitting send.</p>
         
-        <div class="quest-steps">
+        <div class="quest-steps" id="quest-steps">
           <div class="quest-step-item done"><i class="fa-solid fa-circle-check"></i> <span>Inspect recipient & transfer amount</span></div>
           <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>Check the Fee Disclosure box</span></div>
           <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>Click Confirm & Send to safely complete</span></div>
@@ -86,9 +90,27 @@
       </div>
     </aside>
 
-    <!-- Placeholder space for the Center Sandbox & Right Inspector next! -->
-    <main style="background: var(--bg-dark); flex: 1; padding: 2rem; color: var(--text-muted);">
-      <p><em>Center Sandbox area goes here next...</em></p>
+    <!-- central sandbox -->
+    <main class="sandbox-main">
+      <div class="browser-chrome">
+        <div class="browser-indicators">
+          <span class="badge-safe"><i class="fa-solid fa-lock"></i> SAFE ENVIRONMENT — NO REAL DATA</span>
+        </div>
+        <div class="browser-url-bar">
+          <i class="fa-solid fa-lock" style="color: var(--accent-green); font-size: 0.8rem;"></i>
+          <span id="sim-url">https://secure.firstbank.com/transfer</span>
+          <span class="sandbox-copy-badge">SANDBOX COPY</span>
+        </div>
+        <button class="btn-reset-sim" onclick="resetCurrentScenario()">
+          <i class="fa-solid fa-rotate-right"></i> Reset Simulation
+        </button>
+      </div>
+
+      <div class="browser-viewport">
+        <div id="browser-content">
+          <!-- Dynamic scenario content will load here -->
+        </div>
+      </div>
     </main>
 
   </div>
