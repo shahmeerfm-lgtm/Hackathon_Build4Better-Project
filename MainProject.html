@@ -10,13 +10,13 @@
 </head>
 <body>
 
-  <!-- ACCESSIBILITY ASSIST BAR -->
+  <!--assist bar -->
   <div class="accessibility-bar">
     <span><i class="fa-solid fa-eye"></i> Easy-Read Mode Active</span>
     <button class="a11y-btn" onclick="toggleReadAloud()"><i class="fa-solid fa-volume-high"></i> Read Screen Aloud</button>
   </div>
 
-  <!-- TOP HEADER COMPONENT -->
+  <!--header -->
   <header class="top-bar">
     <div class="logo">
       <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -44,10 +44,10 @@
     </div>
   </header>
 
-  <!-- APP CONTAINER GRID -->
+  <!--app container -->
   <div class="app-container" id="app-container-root">
     
-    <!-- LEFT SIDEBAR COMPONENT -->
+    <!--sidebar -->
     <aside class="sidebar">
       <div class="sidebar-section">
         <h3><i class="fa-solid fa-list-check"></i> Select a Practice Lesson</h3>
@@ -104,7 +104,7 @@
       </div>
     </aside>
 
-    <!-- CENTRAL SANDBOX AREA -->
+    <!-- center sandbox -->
     <main class="sandbox-main">
       <div class="browser-chrome">
         <div class="browser-indicators">
@@ -123,7 +123,7 @@
       <div class="browser-viewport">
         <div id="browser-content">
           
-          <!-- 1. BANK TRANSFER SCENARIO -->
+          <!--scen1: bank transfer -->
           <div class="scenario-view" id="view-banking" style="max-width: 520px; margin: 0 auto;">
             <div class="friendly-notice">
               <i class="fa-solid fa-circle-info"></i>
@@ -148,7 +148,7 @@
               <input type="text" class="mock-input" value="20.00 USD" readonly>
             </div>
 
-            <!-- Review Checkbox -->
+            <!--review check box -->
             <div class="mock-app-card interactive-element fee-card"
                  onmouseenter="inspectElement('Review Checkbox', 'Safe', 'Checking this ensures you reviewed everything carefully.', 'Real banking sites ask you to check a box so you do not make accidental transfers.')"
                  onclick="toggleFeeCheckbox()">
@@ -163,7 +163,7 @@
             </button>
           </div>
 
-          <!-- 2. PHISHING SCAM SCENARIO -->
+          <!--scen2: phishing scam -->
           <div class="scenario-view" id="view-email" style="display: none; max-width: 620px; margin: 0 auto;">
             <div class="friendly-notice warning-notice">
               <i class="fa-solid fa-triangle-exclamation"></i>
@@ -225,7 +225,7 @@
             </div>
           </div>
 
-          <!-- 3. GOVERNMENT PORTAL SCENARIO -->
+          <!--scen3: password reset -->
           <div class="scenario-view" id="view-gov" style="display: none; max-width: 580px; margin: 0 auto;">
             <div class="friendly-notice">
               <i class="fa-solid fa-key"></i>
@@ -283,7 +283,7 @@
       </div>
     </main>
 
-    <!-- RIGHT INSPECTOR PANEL COMPONENT -->
+    <!--right panel -->
     <aside class="inspector-panel">
       <div class="panel-header">
         <i class="fa-solid fa-glasses icon-inspector"></i>
@@ -316,7 +316,7 @@
 
   </div>
 
-  <!-- CUSTOM FEEDBACK MODAL OVERLAY -->
+  <!--custom feedback -->
   <div class="modal-overlay" id="feedback-modal" style="display: none;">
     <div class="modal-card">
       <div class="modal-icon-container" id="modal-icon-bg">
@@ -329,8 +329,6 @@
       </button>
     </div>
   </div>
-
-  <!-- JavaScript Logic Link -->
   <script src="interactivity.js"></script>
 </body>
 </html>
