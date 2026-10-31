@@ -1,0 +1,41 @@
+<!--centre sandbox -->
+<link rel="stylesheet" href="sandbox.css">
+<main class="sandbox-main">
+  <!--browser simulation bar -->
+  <div class="browser-chrome">
+    <div class="browser-indicators">
+      <span class="badge-safe"><i class="fa-solid fa-lock"></i> SAFE ENVIRONMENT — NO REAL DATA</span>
+    </div>
+    <div class="browser-url-bar">
+      <i class="fa-solid fa-lock" style="color: var(--accent-green); font-size: 0.8rem;"></i>
+      <span id="sim-url">https://secure.firstbank.com/transfer</span>
+      <span class="sandbox-copy-badge">SANDBOX COPY</span>
+    </div>
+    <button class="btn-reset-sim" onclick="resetCurrentScenario()">
+      <i class="fa-solid fa-rotate-right"></i> Reset Simulation
+    </button>
+  </div>
+
+  <!--main interactivbe browser viewport -->
+  <div class="browser-viewport">
+    <div id="browser-content">
+      <!-- Default Bank Transfer View Content -->
+      <div style="max-width: 500px; margin: 0 auto;">
+        <h2 style="margin-bottom: 0.5rem; color: #0f172a;">First Bank — Money Transfer</h2>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Send money quickly and safely using your online account.</p>
+
+        <div class="mock-app-card">
+          <label style="font-weight: 600; font-size: 0.85rem;">Recipient Name</label>
+          <input type="text" class="mock-input" value="Sarah Jenkins (Daughter)">
+        </div>
+
+        <div class="mock-app-card">
+          <label style="font-weight: 600; font-size: 0.85rem;">Amount ($USD)</label>
+          <input type="text" class="mock-input" value="20.00">
+        </div>
+
+        <button class="mock-btn" style="width: 100%; margin-top: 1rem;">Confirm &amp; Send $20.00</button>
+      </div>
+    </div>
+  </div>
+</main>
