@@ -41,7 +41,7 @@
   <!--app container -->
   <div class="app-container">
     
-    <!--sidebar-->
+    <!--left sidebar -->
     <aside class="sidebar">
       <div class="sidebar-section">
         <h3><i class="fa-solid fa-map-location-dot"></i> Choose Practice Scenario</h3>
@@ -90,7 +90,7 @@
       </div>
     </aside>
 
-    <!--central sidebar-->
+    <!-- cnetral sandbox -->
     <main class="sandbox-main">
       <div class="browser-chrome">
         <div class="browser-indicators">
@@ -124,10 +124,10 @@
               <input type="text" class="mock-input" value="20.00">
             </div>
 
-            <button class="mock-btn" style="width: 100%; margin-top: 1rem;">Confirm &amp; Send $20.00</button>
+            <button class="mock-btn" style="width: 100%; margin-top: 1rem;" onclick="triggerSuccess('Transfer Completed Safely!', 'You verified recipient credentials and completed a secure bank transaction.')">Confirm &amp; Send $20.00</button>
           </div>
 
-          <!--scen2: phising scam -->
+          <!--scen1: phishing scam -->
           <div class="scenario-view" id="view-email" style="display: none; max-width: 600px; margin: 0 auto;">
             <div class="email-header">
               <h3 class="email-subject">URGENT: Your account has been suspended!</h3>
@@ -230,8 +230,40 @@
       </div>
     </main>
 
+    <!-- right panel -->
+    <aside class="inspector-panel">
+      <div class="panel-header">
+        <i class="fa-solid fa-microscope icon-inspector"></i>
+        <div>
+          <h3>Safety Inspector</h3>
+          <p>Hover or click elements to inspect</p>
+        </div>
+      </div>
+
+      <div class="inspector-card" id="inspector-card">
+        <div class="card-status status-safe" id="inspect-status">
+          <i class="fa-solid fa-shield-check" id="inspect-status-icon"></i>
+          <span id="inspect-status-text">Safe Environment Active</span>
+        </div>
+        
+        <h4 id="inspect-title">Select an item inside the simulation</h4>
+        <p id="inspect-desc">
+          Move your cursor over transfer fields, warning banners, or URLs to analyze security details and risk factors.
+        </p>
+
+        <div class="pro-tip-box" id="inspect-tip-box">
+          <div class="tip-header">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Pro Safety Tip</span>
+          </div>
+          <p id="inspect-tip">Always verify the domain name in your browser's URL bar before entering sensitive details.</p>
+        </div>
+      </div>
+    </aside>
+
   </div>
 
+  <!-- JavaScript Logic Link -->
   <script src="app.js"></script>
 </body>
 </html>
