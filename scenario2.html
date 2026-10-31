@@ -1,0 +1,57 @@
+<!-- phishing scam component -->
+ <link rel="stylesheet" href="scenario2.css">
+<div class="browser-viewport">
+  <div id="browser-content">
+    <div class="phishing-container">
+      
+      <!-- Email Header -->
+      <div class="email-header">
+        <h3 class="email-subject">URGENT: Your account has been suspended!</h3>
+        <div class="sender-info interactive-element" 
+             onmouseenter="inspectElement('Sender Address', 'Danger', 'The sender address is: support@bank-security-update99.com.', 'Notice that this domain does NOT end in official bank.com. Scammers use lookalike domains to deceive users.')"
+             onclick="inspectElement('Sender Address', 'Danger', 'The sender address is: support@bank-security-update99.com.', 'Notice that this domain does NOT end in official bank.com. Scammers use lookalike domains to deceive users.')">
+          From: <strong>Security Desk &lt;support@bank-security-update99.com&gt;</strong>
+          <span class="suspicious-badge">[SUSPICIOUS DOMAIN]</span>
+        </div>
+      </div>
+
+      <!-- Urgent Warning Banner -->
+      <div class="mock-app-card warning-card interactive-element" 
+           onmouseenter="inspectElement('Urgent Alert Warning', 'Caution', 'Scammers create artificial urgency to make you panic and react without thinking.', 'Real banks will never threaten account closure via random links in an email.')"
+           onclick="inspectElement('Urgent Alert Warning', 'Caution', 'Scammers create artificial urgency to make you panic and react without thinking.', 'Real banks will never threaten account closure via random links in an email.')">
+        <p class="warning-text">
+          <i class="fa-solid fa-triangle-exclamation"></i> We detected unusual activity on your card. You must verify your account password within 1 hour or your funds will be frozen.
+        </p>
+      </div>
+
+      <p class="phishing-instruction">
+        Choose how you would like to handle this security alert message:
+      </p>
+
+      <!-- Action Options -->
+      <div class="action-buttons-group">
+        <button class="mock-btn-danger action-btn interactive-element" 
+                onmouseenter="inspectElement('Verify Account Link', 'Danger', 'Leads to a fake replica login site designed to steal your passwords.', 'Clicking this exposes your sensitive banking login credentials.')"
+                onclick="triggerOops('Caught in a Phishing Trap!', 'Never click urgent verification links in emails. Scammers use them to harvest usernames and passwords.')">
+          <span><i class="fa-solid fa-arrow-pointer"></i> 1. Click "Verify My Account Now" link</span>
+          <span class="risk-badge">Risky</span>
+        </button>
+
+        <button class="mock-btn btn-warning action-btn interactive-element" 
+                onmouseenter="inspectElement('Reply to Scammer', 'Caution', 'Replying tells the scammer that your email address is active and monitored.', 'They will follow up with more aggressive phishing attacks or phone scams.')"
+                onclick="triggerOops('Risky Choice: Replying to the Email', 'Replying confirms to scammers that your email address is real. They will now target you with more sophisticated scams.')">
+          <span><i class="fa-solid fa-reply"></i> 2. Reply to email asking if it is real</span>
+          <span class="risk-badge">Caution</span>
+        </button>
+
+        <button class="mock-btn btn-safe action-btn interactive-element" 
+                onmouseenter="inspectElement('Manual Bank App Check', 'Safe', 'The gold standard of digital safety. Ignore the email and check your official app directly.', 'This guarantees you bypass phishing traps entirely.')"
+                onclick="triggerSuccess('Phishing Avoided Successfully!', 'Great job! You recognized the suspicious domain, ignored the panic tactic, and checked your bank app manually.')">
+          <span><i class="fa-solid fa-shield-check"></i> 3. Ignore email &amp; open official bank app manually</span>
+          <span class="risk-badge">Recommended</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
