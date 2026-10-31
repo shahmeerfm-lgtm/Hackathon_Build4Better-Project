@@ -38,10 +38,10 @@
     </div>
   </header>
 
-  <!--app container-->
+  <!--app container -->
   <div class="app-container">
     
-    <!-- sidebar -->
+    <!--sidebar-->
     <aside class="sidebar">
       <div class="sidebar-section">
         <h3><i class="fa-solid fa-map-location-dot"></i> Choose Practice Scenario</h3>
@@ -90,7 +90,7 @@
       </div>
     </aside>
 
-    <!-- centre sandbox -->
+    <!--central sidebar-->
     <main class="sandbox-main">
       <div class="browser-chrome">
         <div class="browser-indicators">
@@ -109,7 +109,7 @@
       <div class="browser-viewport">
         <div id="browser-content">
           
-          <!-- scen 1: bank transfer -->
+          <!--scen1: bank transfer-->
           <div class="scenario-view" id="view-banking" style="max-width: 500px; margin: 0 auto;">
             <h2 style="margin-bottom: 0.5rem; color: #0f172a;">First Bank — Money Transfer</h2>
             <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Send money quickly and safely using your online account.</p>
@@ -127,7 +127,7 @@
             <button class="mock-btn" style="width: 100%; margin-top: 1rem;">Confirm &amp; Send $20.00</button>
           </div>
 
-          <!-- scen2: phishing scam -->
+          <!--scen2: phising scam -->
           <div class="scenario-view" id="view-email" style="display: none; max-width: 600px; margin: 0 auto;">
             <div class="email-header">
               <h3 class="email-subject">URGENT: Your account has been suspended!</h3>
@@ -175,13 +175,63 @@
             </div>
           </div>
 
+          <!--scen3: password reset -->
+          <div class="scenario-view" id="view-gov" style="display: none; max-width: 550px; margin: 0 auto;">
+            <div class="portal-header">
+              <div class="gov-seal">
+                <i class="fa-solid fa-landmark"></i>
+              </div>
+              <div class="portal-title">
+                <h3>Official GovServices Account Portal</h3>
+                <p>Secure Account Recovery System</p>
+              </div>
+            </div>
+
+            <div class="mock-app-card gov-notice-card interactive-element"
+                 onmouseenter="inspectElement('Official .gov Domain', 'Safe', 'The URL ends in official .gov domain.', 'Government portals always use .gov domains. Fake phishing sites use domain variations like .com or .net.')"
+                 onclick="inspectElement('Official .gov Domain', 'Safe', 'The URL ends in official .gov domain.', 'Government portals always use .gov domains. Fake phishing sites use domain variations like .com or .net.')">
+              <p class="gov-notice-text">
+                <i class="fa-solid fa-shield-halved"></i> You are requesting a password reset for account recovery. Always verify you are on an official <strong>.gov</strong> address.
+              </p>
+            </div>
+
+            <div class="gov-form">
+              <div class="form-group interactive-element"
+                   onmouseenter="inspectElement('Identity Verification', 'Caution', 'Verify your Social Security or ID number safely.', 'Ensure the page has an encrypted HTTPS lock icon in the browser URL bar before entering sensitive details.')"
+                   onclick="inspectElement('Identity Verification', 'Caution', 'Verify your Social Security or ID number safely.', 'Ensure the page has an encrypted HTTPS lock icon in the browser URL bar before entering sensitive details.')">
+                <label class="form-label">User Identifier / Email</label>
+                <input type="text" class="mock-input" value="user.recovery@gov.example" readonly>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">New Password Selection</label>
+                <p class="form-help">Choose a password management strategy:</p>
+                
+                <div class="password-options">
+                  <button class="mock-btn-danger action-btn interactive-element"
+                          onmouseenter="inspectElement('Weak Password', 'Danger', 'Short and predictable passwords are easy targets.', 'Avoid using simple phrases, birthdays, or repeating numbers.')"
+                          onclick="triggerOops('Weak Password Selected!', 'Using predictable passwords makes your government account vulnerable to brute-force credential attacks.')">
+                    <span><i class="fa-solid fa-key"></i> Option A: <code>Password123</code></span>
+                    <span class="risk-badge">Unsafe</span>
+                  </button>
+
+                  <button class="mock-btn btn-safe action-btn interactive-element"
+                          onmouseenter="inspectElement('Strong Passphrase', 'Safe', 'Long passphrases with mixed characters are highly secure.', 'Combining letters, numbers, and symbols creates strong security against automated crack tools.')"
+                          onclick="triggerSuccess('Account Recovered Safely!', 'Excellent! You chose a strong passphrase and verified the official .gov environment.')">
+                    <span><i class="fa-solid fa-lock"></i> Option B: <code>Tr0pical-88!Breeze#Safe</code></span>
+                    <span class="risk-badge">Recommended</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>
 
   </div>
 
-  <!-- JavaScript Application Logic -->
   <script src="app.js"></script>
 </body>
 </html>

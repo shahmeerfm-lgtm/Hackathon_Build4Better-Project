@@ -204,7 +204,7 @@ body {
 .quest-step-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); }
 .quest-step-item.done { color: var(--accent-green); text-decoration: line-through; }
 
-/* CENTRAL SANDBOX AREA STYLES */
+/* CENTRAL SANDBOX AREA */
 .sandbox-main {
   flex: 1;
   background-color: #0b132b;
@@ -330,9 +330,7 @@ body {
   transition: background-color 0.2s;
 }
 
-.mock-btn:hover {
-  background-color: #2563eb;
-}
+.mock-btn:hover { background-color: #2563eb; }
 
 .mock-btn-danger {
   background-color: #dc2626;
@@ -346,9 +344,7 @@ body {
   transition: background-color 0.2s;
 }
 
-.mock-btn-danger:hover {
-  background-color: #b91c1c;
-}
+.mock-btn-danger:hover { background-color: #b91c1c; }
 
 /* PHISHING SCENARIO STYLES */
 .email-header {
@@ -357,10 +353,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.email-subject {
-  color: #0f172a;
-  margin-top: 0;
-}
+.email-subject { color: #0f172a; margin-top: 0; }
 
 .sender-info {
   font-size: 0.85rem;
@@ -377,55 +370,16 @@ body {
   margin-left: 6px;
 }
 
-.warning-card {
-  background-color: #fef2f2;
-  border-color: #fca5a5;
-}
+.warning-card { background-color: #fef2f2; border-color: #fca5a5; }
+.warning-text { font-size: 0.9rem; color: #991b1b; line-height: 1.4; margin: 0; }
+.phishing-instruction { font-size: 0.9rem; line-height: 1.5; color: #334155; margin-bottom: 1.5rem; }
 
-.warning-text {
-  font-size: 0.9rem;
-  color: #991b1b;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.phishing-instruction {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #334155;
-  margin-bottom: 1.5rem;
-}
-
-.action-buttons-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.action-btn {
-  text-align: left;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.btn-warning {
-  background-color: #d97706;
-}
-
-.btn-warning:hover {
-  background-color: #b45309;
-}
-
-.btn-safe {
-  background-color: #059669;
-}
-
-.btn-safe:hover {
-  background-color: #047857;
-}
+.action-buttons-group { display: flex; flex-direction: column; gap: 10px; }
+.action-btn { text-align: left; padding: 12px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.btn-warning { background-color: #d97706; }
+.btn-warning:hover { background-color: #b45309; }
+.btn-safe { background-color: #059669; }
+.btn-safe:hover { background-color: #047857; }
 
 .risk-badge {
   font-size: 0.75rem;
@@ -440,6 +394,39 @@ body {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.interactive-element:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.interactive-element:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+
+/* GOVERNMENT PORTAL STYLES */
+.portal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
+
+.gov-seal {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.portal-title h3 { margin: 0; color: #0f172a; font-size: 1.1rem; font-weight: 700; }
+.portal-title p { margin: 2px 0 0 0; font-size: 0.8rem; color: #64748b; }
+
+.gov-notice-card { background-color: #f0fdf4; border: 1px solid #a7f3d0; margin-bottom: 1.5rem; }
+.gov-notice-text { font-size: 0.85rem; color: #065f46; line-height: 1.4; margin: 0; }
+
+.gov-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; }
+.form-label { font-weight: 600; font-size: 0.85rem; color: #334155; margin-bottom: 4px; }
+.form-help { font-size: 0.8rem; color: #64748b; margin: 2px 0 10px 0; }
+.password-options { display: flex; flex-direction: column; gap: 10px; }
