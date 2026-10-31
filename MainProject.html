@@ -3,47 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeSandbox — Flight Simulator for Everyday Tech</title>
+  <title>SafeSandbox — Friendly Tech Flight Simulator</title>
   <link rel="stylesheet" href="css/MainStyle.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!--header -->
+
+  <!-- ACCESSIBILITY ASSIST BAR -->
+  <div class="accessibility-bar">
+    <span><i class="fa-solid fa-eye"></i> Easy-Read Mode Active</span>
+    <button class="a11y-btn" onclick="toggleReadAloud()"><i class="fa-solid fa-volume-high"></i> Read Screen Aloud</button>
+  </div>
+
+  <!-- TOP HEADER COMPONENT -->
   <header class="top-bar">
     <div class="logo">
       <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
       <div class="logo-text">
         <h1>SafeSandbox</h1>
-        <p>Flight Simulator for Everyday Tech</p>
+        <p>Learn Digital Safety at Your Own Pace</p>
       </div>
     </div>
 
     <div class="mode-pills">
       <button class="pill-btn active" id="btn-guided" onclick="setMode('guided')">
-        <i class="fa-solid fa-compass"></i> Guided Quest
+        <i class="fa-solid fa-compass"></i> Step-by-Step Guide
       </button>
       <button class="pill-btn" id="btn-free" onclick="setMode('free')">
-        <i class="fa-solid fa-gamepad"></i> Free Exploration
+        <i class="fa-solid fa-gamepad"></i> Free Practice
       </button>
     </div>
 
     <div class="user-confidence">
-      <i class="fa-solid fa-bolt icon-confidence"></i>
+      <i class="fa-solid fa-shield-cat icon-confidence"></i>
       <div class="confidence-info">
-        <span class="label">Confidence Score</span>
+        <span class="label">Safety Score</span>
         <span class="val">85 / 100</span>
       </div>
     </div>
   </header>
 
-  <!--app container -->
-  <div class="app-container">
+  <!-- APP CONTAINER GRID -->
+  <div class="app-container" id="app-container-root">
     
     <!-- LEFT SIDEBAR COMPONENT -->
     <aside class="sidebar">
       <div class="sidebar-section">
-        <h3><i class="fa-solid fa-map-location-dot"></i> Choose Practice Scenario</h3>
+        <h3><i class="fa-solid fa-list-check"></i> Select a Practice Lesson</h3>
         <div class="scenario-list">
           <button class="scenario-card active" id="scen-banking" onclick="loadScenario('banking')">
             <div class="scen-icon bank"><i class="fa-solid fa-university"></i></div>
@@ -57,8 +64,8 @@
           <button class="scenario-card" id="scen-email" onclick="loadScenario('email')">
             <div class="scen-icon mail"><i class="fa-solid fa-envelope-open-text"></i></div>
             <div class="scen-info">
-              <h4>Spotting Phishing Scams</h4>
-              <p>Identify safe vs suspicious messages</p>
+              <h4>Fake Email Alert</h4>
+              <p>Learn to spot dangerous links</p>
             </div>
             <i class="fa-solid fa-chevron-right arrow"></i>
           </button>
@@ -66,8 +73,8 @@
           <button class="scenario-card" id="scen-gov" onclick="loadScenario('gov')">
             <div class="scen-icon gov"><i class="fa-solid fa-id-card"></i></div>
             <div class="scen-info">
-              <h4>Gov Portal Password Reset</h4>
-              <p>Confidently handle account recovery</p>
+              <h4>Official Account Reset</h4>
+              <p>Create strong, simple passwords</p>
             </div>
             <i class="fa-solid fa-chevron-right arrow"></i>
           </button>
@@ -76,153 +83,196 @@
 
       <div class="quest-box" id="quest-box">
         <div class="quest-header">
-          <i class="fa-solid fa-flag-checkered"></i>
-          <h4 id="quest-title">Send $20 safely to a family member</h4>
+          <i class="fa-solid fa-list-ol"></i>
+          <h4 id="quest-title">Lesson Steps</h4>
         </div>
-        <p id="quest-desc">Practice inspecting transfer fields and confirming details before hitting send.</p>
+        <p id="quest-desc">Follow these simple steps to complete this exercise safely.</p>
         
         <div class="quest-steps" id="quest-steps">
-          <div class="quest-step-item done"><i class="fa-solid fa-circle-check"></i> <span>Inspect recipient & transfer amount</span></div>
-          <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>Check the Fee Disclosure box</span></div>
-          <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>Click Confirm & Send to safely complete</span></div>
+          <div class="quest-step-item done"><i class="fa-solid fa-circle-check"></i> <span>1. Check recipient name & amount</span></div>
+          <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>2. Check the agreement box below</span></div>
+          <div class="quest-step-item"><i class="fa-regular fa-circle"></i> <span>3. Click Confirm & Send safely</span></div>
+        </div>
+      </div>
+
+      <div class="help-box">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+        <div>
+          <strong>Need Help?</strong>
+          <p>Hover over any box in the main screen to learn what it means!</p>
         </div>
       </div>
     </aside>
 
-    <!--cantral sandbox -->
+    <!-- CENTRAL SANDBOX AREA -->
     <main class="sandbox-main">
       <div class="browser-chrome">
         <div class="browser-indicators">
-          <span class="badge-safe"><i class="fa-solid fa-lock"></i> SAFE ENVIRONMENT — NO REAL DATA</span>
+          <span class="badge-safe" id="sandbox-badge"><i class="fa-solid fa-circle-check"></i> SAFE TEST MODE — NO REAL MONEY USED</span>
         </div>
         <div class="browser-url-bar">
-          <i class="fa-solid fa-lock" style="color: #34d399; font-size: 0.8rem;"></i>
+          <i class="fa-solid fa-lock" style="color: #059669; font-size: 0.9rem;"></i>
           <span id="sim-url">https://secure.firstbank.com/transfer</span>
-          <span class="sandbox-copy-badge">SANDBOX COPY</span>
+          <span class="sandbox-copy-badge">SAFE PRACTICE PAGE</span>
         </div>
         <button class="btn-reset-sim" onclick="resetCurrentScenario()">
-          <i class="fa-solid fa-rotate-right"></i> Reset Simulation
+          <i class="fa-solid fa-rotate-right"></i> Start Lesson Over
         </button>
       </div>
 
       <div class="browser-viewport">
         <div id="browser-content">
           
-          <!--scen1: bank transfer -->
-          <div class="scenario-view" id="view-banking" style="max-width: 500px; margin: 0 auto;">
-            <h2 style="margin-bottom: 0.5rem; color: #111827; font-size: 1.25rem;">First Bank — Money Transfer</h2>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.25rem;">Send money quickly and safely using your online account.</p>
+          <!-- 1. BANK TRANSFER SCENARIO -->
+          <div class="scenario-view" id="view-banking" style="max-width: 520px; margin: 0 auto;">
+            <div class="friendly-notice">
+              <i class="fa-solid fa-circle-info"></i>
+              <span><strong>Practice Task:</strong> Review the details below and confirm sending $20 to Sarah.</span>
+            </div>
+
+            <h2 style="margin-bottom: 0.5rem; color: #0f172a; font-size: 1.35rem;">First Bank — Money Transfer</h2>
+            <p style="font-size: 0.95rem; color: #475569; margin-bottom: 1.25rem;">Send money quickly and safely using your online bank account.</p>
 
             <div class="mock-app-card interactive-element"
-                 onmouseenter="inspectElement('Recipient Account', 'Safe', 'Recipient account details match verified family profile.', 'Always confirm the exact name and account number before authorizing money transfers.')"
-                 onclick="inspectElement('Recipient Account', 'Safe', 'Recipient account details match verified family profile.', 'Always confirm the exact name and account number before authorizing money transfers.')">
-              <label style="font-weight: 600; font-size: 0.8rem; color: #374151;">Recipient Name</label>
+                 onmouseenter="inspectElement('Recipient Name', 'Safe', 'Sarah Jenkins is in your approved contact list.', 'Always make sure the recipient name matches who you intend to pay before sending.')"
+                 onclick="inspectElement('Recipient Name', 'Safe', 'Sarah Jenkins is in your approved contact list.', 'Always make sure the recipient name matches who you intend to pay before sending.')">
+              <label class="senior-label"><i class="fa-solid fa-user"></i> Who is getting the money?</label>
               <input type="text" class="mock-input" value="Sarah Jenkins (Daughter)" readonly>
+              <span class="helper-hint"><i class="fa-solid fa-magnifying-glass"></i> Hover to inspect this box</span>
             </div>
 
             <div class="mock-app-card interactive-element"
-                 onmouseenter="inspectElement('Transfer Amount', 'Safe', 'Amount verified against account available balance.', 'Double check transaction limits and fees before confirming.')"
-                 onclick="inspectElement('Transfer Amount', 'Safe', 'Amount verified against account available balance.', 'Double check transaction limits and fees before confirming.')">
-              <label style="font-weight: 600; font-size: 0.8rem; color: #374151;">Amount ($USD)</label>
-              <input type="text" class="mock-input" value="20.00" readonly>
+                 onmouseenter="inspectElement('Transfer Amount', 'Safe', 'Amount is set to $20.00 USD.', 'Always re-check the decimal point! Sending $20.00 is very different from sending $2000.')"
+                 onclick="inspectElement('Transfer Amount', 'Safe', 'Amount is set to $20.00 USD.', 'Always re-check the decimal point! Sending $20.00 is very different from sending $2000.')">
+              <label class="senior-label"><i class="fa-solid fa-dollar-sign"></i> Amount to Send</label>
+              <input type="text" class="mock-input" value="20.00 USD" readonly>
             </div>
 
-            <button class="mock-btn" style="width: 100%; margin-top: 0.5rem;" onclick="triggerSuccess('Transfer Completed Safely!', 'You verified recipient credentials and completed a secure bank transaction.')">Confirm &amp; Send $20.00</button>
+            <!-- Review Checkbox -->
+            <div class="mock-app-card interactive-element fee-card"
+                 onmouseenter="inspectElement('Review Checkbox', 'Safe', 'Checking this ensures you reviewed everything carefully.', 'Real banking sites ask you to check a box so you do not make accidental transfers.')"
+                 onclick="toggleFeeCheckbox()">
+              <input type="checkbox" id="fee-checkbox" onclick="event.stopPropagation(); toggleFeeCheckbox();">
+              <label for="fee-checkbox" class="senior-checkbox-label">
+                <strong>I have checked the name and amount above</strong> and agree to complete this $20.00 transfer.
+              </label>
+            </div>
+
+            <button class="mock-btn senior-btn" onclick="attemptBankTransfer()">
+              <i class="fa-solid fa-paper-plane"></i> Confirm &amp; Send $20.00
+            </button>
           </div>
 
-          <!--scen1: phishing scam -->
-          <div class="scenario-view" id="view-email" style="display: none; max-width: 600px; margin: 0 auto;">
+          <!-- 2. PHISHING SCAM SCENARIO -->
+          <div class="scenario-view" id="view-email" style="display: none; max-width: 620px; margin: 0 auto;">
+            <div class="friendly-notice warning-notice">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span><strong>Practice Task:</strong> You received an urgent email. Find the safe choice!</span>
+            </div>
+
             <div class="email-header">
-              <h3 class="email-subject">URGENT: Your account has been suspended!</h3>
+              <h3 class="email-subject">URGENT: Your bank account will be frozen!</h3>
               <div class="sender-info interactive-element" 
-                   onmouseenter="inspectElement('Sender Address', 'Danger', 'The sender address is: support@bank-security-update99.com.', 'Notice that this domain does NOT end in official bank.com. Scammers use lookalike domains to deceive users.')"
-                   onclick="inspectElement('Sender Address', 'Danger', 'The sender address is: support@bank-security-update99.com.', 'Notice that this domain does NOT end in official bank.com. Scammers use lookalike domains to deceive users.')">
+                   onmouseenter="inspectElement('Sender Address', 'Danger', 'Look at the web address: bank-security-update99.com.', 'Notice the domain has random numbers (99). Real banks use clear names like bank.com.')"
+                   onclick="inspectElement('Sender Address', 'Danger', 'Look at the web address: bank-security-update99.com.', 'Notice the domain has random numbers (99). Real banks use clear names like bank.com.')">
                 From: <strong>Security Desk &lt;support@bank-security-update99.com&gt;</strong>
-                <span class="suspicious-badge">[SUSPICIOUS DOMAIN]</span>
+                <span class="suspicious-badge"><i class="fa-solid fa-triangle-exclamation"></i> SUSPICIOUS SENDER</span>
               </div>
             </div>
 
             <div class="mock-app-card warning-card interactive-element" 
-                 onmouseenter="inspectElement('Urgent Alert Warning', 'Caution', 'Scammers create artificial urgency to make you panic and react without thinking.', 'Real banks will never threaten account closure via random links in an email.')"
-                 onclick="inspectElement('Urgent Alert Warning', 'Caution', 'Scammers create artificial urgency to make you panic and react without thinking.', 'Real banks will never threaten account closure via random links in an email.')">
+                 onmouseenter="inspectElement('Panic Warning Message', 'Caution', 'Scammers create panic so you act without thinking.', 'Real banks will never lock your account abruptly without calling or sending official mail.')"
+                 onclick="inspectElement('Panic Warning Message', 'Caution', 'Scammers create panic so you act without thinking.', 'Real banks will never lock your account abruptly without calling or sending official mail.')">
               <p class="warning-text">
-                <i class="fa-solid fa-triangle-exclamation"></i> We detected unusual activity on your card. You must verify your account password within 1 hour or your funds will be frozen.
+                <i class="fa-solid fa-shield-virus"></i> We found unusual card activity! You must verify your account password within 1 hour or your card will be blocked.
               </p>
             </div>
 
             <p class="phishing-instruction">
-              Choose how you would like to handle this security alert message:
+              <strong>What is the safest thing to do next?</strong>
             </p>
 
             <div class="action-buttons-group">
-              <button class="mock-btn-danger action-btn interactive-element" 
-                      onmouseenter="inspectElement('Verify Account Link', 'Danger', 'Leads to a fake replica login site designed to steal your passwords.', 'Clicking this exposes your sensitive banking login credentials.')"
-                      onclick="triggerOops('Caught in a Phishing Trap!', 'Never click urgent verification links in emails. Scammers use them to harvest usernames and passwords.')">
-                <span><i class="fa-solid fa-arrow-pointer"></i> 1. Click "Verify My Account Now" link</span>
-                <span class="risk-badge">Risky</span>
+              <button class="mock-btn-danger action-btn interactive-element senior-choice-btn" 
+                      onmouseenter="inspectElement('Risky Link Button', 'Danger', 'Takes you to a fake website that steals passwords.', 'Never click buttons inside urgent emails!')"
+                      onclick="triggerOops('Caught in a Scam Trap!', 'Never click urgent verification links in emails. Scammers use fake links to steal your bank password.')">
+                <div>
+                  <strong>1. Click "Verify Password Now" Link</strong>
+                  <p class="btn-subtext">This will open an unknown link from the email</p>
+                </div>
+                <span class="risk-badge risky">Dangerous</span>
               </button>
 
-              <button class="mock-btn btn-warning action-btn interactive-element" 
-                      onmouseenter="inspectElement('Reply to Scammer', 'Caution', 'Replying tells the scammer that your email address is active and monitored.', 'They will follow up with more aggressive phishing attacks or phone scams.')"
-                      onclick="triggerOops('Risky Choice: Replying to the Email', 'Replying confirms to scammers that your email address is real. They will now target you with more sophisticated scams.')">
-                <span><i class="fa-solid fa-reply"></i> 2. Reply to email asking if it is real</span>
-                <span class="risk-badge">Caution</span>
+              <button class="mock-btn btn-warning action-btn interactive-element senior-choice-btn" 
+                      onmouseenter="inspectElement('Reply Button', 'Caution', 'Replying confirms your email address is real to the scammer.', 'They will keep bothering you with more scam emails.')"
+                      onclick="triggerOops('Risky Choice: Replying', 'Replying lets scammers know your email is real. They will send you more scam emails.')">
+                <div>
+                  <strong>2. Reply to email asking if it is real</strong>
+                  <p class="btn-subtext">Sends a message back to support@bank-security-update99.com</p>
+                </div>
+                <span class="risk-badge caution">Not Safe</span>
               </button>
 
-              <button class="mock-btn btn-safe action-btn interactive-element" 
-                      onmouseenter="inspectElement('Manual Bank App Check', 'Safe', 'The gold standard of digital safety. Ignore the email and check your official app directly.', 'This guarantees you bypass phishing traps entirely.')"
-                      onclick="triggerSuccess('Phishing Avoided Successfully!', 'Great job! You recognized the suspicious domain, ignored the panic tactic, and checked your bank app manually.')">
-                <span><i class="fa-solid fa-shield-check"></i> 3. Ignore email &amp; open official bank app manually</span>
-                <span class="risk-badge">Recommended</span>
+              <button class="mock-btn btn-safe action-btn interactive-element senior-choice-btn" 
+                      onmouseenter="inspectElement('Safe Direct Navigation', 'Safe', 'Closing suspicious emails and opening official apps directly is the gold standard.', 'This completely protects you from email scams!')"
+                      onclick="triggerSuccess('Scam Avoided Perfectly!', 'Wonderful job! You spotted the suspicious web address, ignored the scary warning, and chose to check your official bank app directly.')">
+                <div>
+                  <strong>3. Close email &amp; open official bank app on your phone</strong>
+                  <p class="btn-subtext">Bypasses the email link completely and stays safe</p>
+                </div>
+                <span class="risk-badge safe">Best Choice</span>
               </button>
             </div>
           </div>
 
-          <!--scen3: password reset -->
-          <div class="scenario-view" id="view-gov" style="display: none; max-width: 550px; margin: 0 auto;">
+          <!-- 3. GOVERNMENT PORTAL SCENARIO -->
+          <div class="scenario-view" id="view-gov" style="display: none; max-width: 580px; margin: 0 auto;">
+            <div class="friendly-notice">
+              <i class="fa-solid fa-key"></i>
+              <span><strong>Practice Task:</strong> Choose a password strategy that keeps your account safe.</span>
+            </div>
+
             <div class="portal-header">
               <div class="gov-seal">
                 <i class="fa-solid fa-landmark"></i>
               </div>
               <div class="portal-title">
-                <h3>Official GovServices Account Portal</h3>
-                <p>Secure Account Recovery System</p>
+                <h3>Official GovServices Portal</h3>
+                <p>Account Password Reset</p>
               </div>
             </div>
 
             <div class="mock-app-card gov-notice-card interactive-element"
-                 onmouseenter="inspectElement('Official .gov Domain', 'Safe', 'The URL ends in official .gov domain.', 'Government portals always use .gov domains. Fake phishing sites use domain variations like .com or .net.')"
-                 onclick="inspectElement('Official .gov Domain', 'Safe', 'The URL ends in official .gov domain.', 'Government portals always use .gov domains. Fake phishing sites use domain variations like .com or .net.')">
+                 onmouseenter="inspectElement('.gov Website Address', 'Safe', 'The website address ends in .gov.', 'Official government websites in the US always end in .gov.')"
+                 onclick="inspectElement('.gov Website Address', 'Safe', 'The website address ends in .gov.', 'Official government websites in the US always end in .gov.')">
               <p class="gov-notice-text">
-                <i class="fa-solid fa-shield-halved"></i> You are requesting a password reset for account recovery. Always verify you are on an official <strong>.gov</strong> address.
+                <i class="fa-solid fa-shield-halved"></i> Notice: You are on an official <strong>.gov</strong> address. Your information is protected.
               </p>
             </div>
 
             <div class="gov-form">
-              <div class="form-group interactive-element"
-                   onmouseenter="inspectElement('Identity Verification', 'Caution', 'Verify your Social Security or ID number safely.', 'Ensure the page has an encrypted HTTPS lock icon in the browser URL bar before entering sensitive details.')"
-                   onclick="inspectElement('Identity Verification', 'Caution', 'Verify your Social Security or ID number safely.', 'Ensure the page has an encrypted HTTPS lock icon in the browser URL bar before entering sensitive details.')">
-                <label class="form-label">User Identifier / Email</label>
-                <input type="text" class="mock-input" value="user.recovery@gov.example" readonly>
-              </div>
-
               <div class="form-group">
-                <label class="form-label">New Password Selection</label>
-                <p class="form-help">Choose a password management strategy:</p>
+                <label class="form-label senior-label">Select a New Password:</label>
                 
                 <div class="password-options">
-                  <button class="mock-btn-danger action-btn interactive-element"
-                          onmouseenter="inspectElement('Weak Password', 'Danger', 'Short and predictable passwords are easy targets.', 'Avoid using simple phrases, birthdays, or repeating numbers.')"
-                          onclick="triggerOops('Weak Password Selected!', 'Using predictable passwords makes your government account vulnerable to brute-force credential attacks.')">
-                    <span><i class="fa-solid fa-key"></i> Option A: <code>Password123</code></span>
-                    <span class="risk-badge">Unsafe</span>
+                  <button class="mock-btn-danger action-btn interactive-element senior-choice-btn"
+                          onmouseenter="inspectElement('Weak Password', 'Danger', 'Password123 is guessed by computers in less than 1 second.', 'Avoid short names, simple words, or 123.')"
+                          onclick="triggerOops('Weak Password Choice!', 'Password123 is too easy for computer scammers to guess. Always use memorable phrases with symbols!')">
+                    <div>
+                      <strong>Option A: <code>Password123</code></strong>
+                      <p class="btn-subtext">Short, simple, but very easy for bad actors to guess</p>
+                    </div>
+                    <span class="risk-badge risky">Unsafe</span>
                   </button>
 
-                  <button class="mock-btn btn-safe action-btn interactive-element"
-                          onmouseenter="inspectElement('Strong Passphrase', 'Safe', 'Long passphrases with mixed characters are highly secure.', 'Combining letters, numbers, and symbols creates strong security against automated crack tools.')"
-                          onclick="triggerSuccess('Account Recovered Safely!', 'Excellent! You chose a strong passphrase and verified the official .gov environment.')">
-                    <span><i class="fa-solid fa-lock"></i> Option B: <code>Tr0pical-88!Breeze#Safe</code></span>
-                    <span class="risk-badge">Recommended</span>
+                  <button class="mock-btn btn-safe action-btn interactive-element senior-choice-btn"
+                          onmouseenter="inspectElement('Strong Passphrase', 'Safe', 'Long phrase passwords are ultra-secure and easier to remember!', 'Combine 3-4 memorable words together.')"
+                          onclick="triggerSuccess('Account Secured Safely!', 'Excellent work! You chose a long passphrase with mixed letters and numbers that scammers cannot guess.')">
+                    <div>
+                      <strong>Option B: <code>Tr0pical-88!Breeze#Safe</code></strong>
+                      <p class="btn-subtext">Long sentence with numbers &amp; symbols (Ultra Secure)</p>
+                    </div>
+                    <span class="risk-badge safe">Recommended</span>
                   </button>
                 </div>
               </div>
@@ -233,48 +283,50 @@
       </div>
     </main>
 
-    <!--right panel -->
+    <!-- RIGHT INSPECTOR PANEL COMPONENT -->
     <aside class="inspector-panel">
       <div class="panel-header">
-        <i class="fa-solid fa-microscope icon-inspector"></i>
+        <i class="fa-solid fa-glasses icon-inspector"></i>
         <div>
-          <h3>Safety Inspector</h3>
-          <p>Hover or click elements to inspect</p>
+          <h3>Digital Helper Guide</h3>
+          <p>Hover or tap anything on screen to read guidance</p>
         </div>
       </div>
 
       <div class="inspector-card" id="inspector-card">
         <div class="card-status status-safe" id="inspect-status">
           <i class="fa-solid fa-shield-check" id="inspect-status-icon"></i>
-          <span id="inspect-status-text">Safe Environment Active</span>
+          <span id="inspect-status-text">Safe Practice Active</span>
         </div>
         
-        <h4 id="inspect-title">Select an item inside the simulation</h4>
+        <h4 id="inspect-title">Move your mouse over anything!</h4>
         <p id="inspect-desc">
-          Move your cursor over transfer fields, warning banners, or URLs to analyze security details and risk factors.
+          Hover over transfer boxes, email senders, or web addresses to see plain-English explanations here.
         </p>
 
         <div class="pro-tip-box" id="inspect-tip-box">
           <div class="tip-header">
             <i class="fa-solid fa-lightbulb"></i>
-            <span>Pro Safety Tip</span>
+            <span>Friendly Tip</span>
           </div>
-          <p id="inspect-tip">Always verify the domain name in your browser's URL bar before entering sensitive details.</p>
+          <p id="inspect-tip">Take your time! In SafeSandbox, nothing is permanent and there are no wrong clicks.</p>
         </div>
       </div>
     </aside>
 
   </div>
 
-  <!--custom feesdback -->
+  <!-- CUSTOM FEEDBACK MODAL OVERLAY -->
   <div class="modal-overlay" id="feedback-modal" style="display: none;">
     <div class="modal-card">
       <div class="modal-icon-container" id="modal-icon-bg">
         <i class="fa-solid fa-shield-check" id="modal-icon"></i>
       </div>
-      <h3 id="modal-title">Success!</h3>
-      <p id="modal-message">Description message goes here.</p>
-      <button class="mock-btn" onclick="closeModal()" style="width: 100%;">Continue Simulation</button>
+      <h3 id="modal-title">Great Work!</h3>
+      <p id="modal-message">Explanation message here.</p>
+      <button class="mock-btn senior-btn" onclick="closeModal()" style="width: 100%;">
+        <i class="fa-solid fa-arrow-right"></i> Continue Learning
+      </button>
     </div>
   </div>
 

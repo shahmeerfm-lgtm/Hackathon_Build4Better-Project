@@ -1,37 +1,40 @@
 // Current Application State
 let currentScenario = 'banking';
 let confidenceScore = 85;
+let currentMode = 'guided';
+let feeChecked = false;
+let isVoiceActive = false;
 
-// Scenario Metadata & Quest Definitions
+// Scenario Metadata and Quest Definitions
 const scenarioData = {
   banking: {
     url: 'https://secure.firstbank.com/transfer',
-    title: 'Send $20 safely to a family member',
-    desc: 'Practice inspecting transfer fields and confirming details before hitting send.',
+    title: 'Lesson 1: Money Transfer',
+    desc: 'Practice inspecting transfer fields and confirming details before sending.',
     steps: [
-      { text: 'Inspect recipient & transfer amount', done: true },
-      { text: 'Check the Fee Disclosure box', done: false },
-      { text: 'Click Confirm & Send to safely complete', done: false }
+      { text: 'Check recipient name & amount', done: true },
+      { text: 'Check the agreement box below', done: false },
+      { text: 'Click Confirm & Send safely', done: false }
     ]
   },
   email: {
     url: 'https://mail.secure-inbox.com/message/89201',
-    title: 'Identify safe vs suspicious messages',
+    title: 'Lesson 2: Fake Email Alert',
     desc: 'Analyze sender addresses and warning banners before clicking links.',
     steps: [
-      { text: 'Inspect sender domain name', done: false },
-      { text: 'Evaluate urgency alert warning', done: false },
+      { text: 'Inspect sender web address', done: false },
+      { text: 'Read the warning message', done: false },
       { text: 'Select safe manual app navigation', done: false }
     ]
   },
   gov: {
     url: 'https://account.recovery.gov/reset-password',
-    title: 'Confidently handle account recovery',
+    title: 'Lesson 3: Official Account Reset',
     desc: 'Verify official .gov addresses and select strong passphrases.',
     steps: [
-      { text: 'Verify official .gov URL in browser bar', done: true },
+      { text: 'Verify official .gov web address', done: true },
       { text: 'Review security notice banner', done: false },
-      { text: 'Select a strong passphrase strategy', done: false }
+      { text: 'Select a strong passphrase', done: false }
     ]
   }
 };
@@ -50,7 +53,7 @@ function loadScenario(type) {
   const targetView = document.getElementById(`view-${type}`);
   if (targetView) targetView.style.display = 'block';
 
-  // Update Browser URL Bar & Quest Box Metadata
+  // Update Browser URL Bar and Quest Box Metadata
   const data = scenarioData[type];
   if (data) {
     const urlEl = document.getElementById('sim-url');
@@ -62,20 +65,50 @@ function loadScenario(type) {
     if (descEl) descEl.innerText = data.desc;
 
     // Render Quest Checklist Steps
-    const stepsContainer = document.getElementById('quest-steps');
-    if (stepsContainer) {
-      stepsContainer.innerHTML = '';
-      data.steps.forEach(step => {
-        const item = document.createElement('div');
-        item.className = `quest-step-item ${step.done ? 'done' : ''}`;
-        item.innerHTML = `
-          <i class="${step.done ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'}"></i>
-          <span>${step.text}</span>
-        `;
-        stepsContainer.appendChild(item);
-      });
-    }
+    renderQuestSteps(data);
   }
+}
+
+function renderQuestSteps(data) {
+  const stepsContainer = document.getElementById('quest-steps');
+  if (!stepsContainer) return;
+  stepsContainer.innerHTML = '';
+  
+  data.steps.forEach((step, index) => {
+    const item = document.createElement('div');
+    let isDone = step.done;
+    if (currentScenario === 'banking' && index === 1) {
+      isDone = feeChecked;
+    }
+    item.className = `quest-step-item ${isDone ? 'done' : ''}`;
+    item.innerHTML = `
+      <i class="${isDone ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'}"></i>
+      <span>${step.text}</span>
+    `;
+    stepsContainer.appendChild(item);
+  });
+}
+
+// Toggle Fee Disclosure Checkbox in Bank Transfer
+function toggleFeeCheckbox() {
+  const checkbox = document.getElementById('fee-checkbox');
+  if (!checkbox) return;
+  checkbox.checked = !checkbox.checked;
+  feeChecked = checkbox.checked;
+
+  if (currentScenario === 'banking') {
+    renderQuestSteps(scenarioData.banking);
+  }
+}
+
+// Attempt Bank Transfer with Checkbox Validation
+function attemptBankTransfer() {
+  const checkbox = document.getElementById('fee-checkbox');
+  if (checkbox && !checkbox.checked) {
+    triggerOops('Checkbox Needed', 'Please check the agreement box before clicking Confirm & Send.');
+    return;
+  }
+  triggerSuccess('Transfer Completed Safely!', 'Great job! You checked the recipient name, confirmed the amount, and completed a safe bank transfer.');
 }
 
 // Live Inspector Hover / Click Panel Updates
@@ -86,7 +119,6 @@ function inspectElement(title, level, description, tip) {
 
   if (!cardStatus || !statusIcon || !statusText) return;
 
-  // Set Status Badge Styles & Icons based on Safety Level
   cardStatus.className = `card-status status-${level.toLowerCase()}`;
   statusText.innerText = level.toUpperCase();
 
@@ -98,7 +130,6 @@ function inspectElement(title, level, description, tip) {
     statusIcon.className = 'fa-solid fa-bug';
   }
 
-  // Update Text Content in the Right Inspector Panel
   const titleEl = document.getElementById('inspect-title');
   const descEl = document.getElementById('inspect-desc');
   const tipEl = document.getElementById('inspect-tip');
@@ -106,9 +137,26 @@ function inspectElement(title, level, description, tip) {
   if (titleEl) titleEl.innerText = title;
   if (descEl) descEl.innerText = description;
   if (tipEl) tipEl.innerText = tip;
+
+  if (isVoiceActive && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(`${title}. ${description}`);
+    window.speechSynthesis.speak(utterance);
+  }
 }
 
-// Success & Mistake Modal Handlers
+// Read Aloud Screen Speech Synthesis
+function toggleReadAloud() {
+  isVoiceActive = !isVoiceActive;
+  if (isVoiceActive) {
+    alert('🔊 Screen Reader Guidance Active! Move your mouse over elements to hear explanations.');
+  } else {
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    alert('🔇 Screen Reader Guidance Disabled.');
+  }
+}
+
+// Modal Handlers with Animated Transitions
 function triggerSuccess(title, message) {
   confidenceScore = Math.min(100, confidenceScore + 5);
   updateScoreUI();
@@ -141,11 +189,19 @@ function showModal(title, message, type) {
   }
 
   modal.style.display = 'flex';
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
 }
 
 function closeModal() {
   const modal = document.getElementById('feedback-modal');
-  if (modal) modal.style.display = 'none';
+  if (!modal) return;
+
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 250);
 }
 
 // Update Header Confidence Score Display
@@ -156,22 +212,41 @@ function updateScoreUI() {
 
 // Reset Current Simulation View
 function resetCurrentScenario() {
+  if (currentScenario === 'banking') {
+    feeChecked = false;
+    const checkbox = document.getElementById('fee-checkbox');
+    if (checkbox) checkbox.checked = false;
+  }
   loadScenario(currentScenario);
 }
 
 // Toggle Guided vs Free Exploration Modes
 function setMode(mode) {
+  currentMode = mode;
   document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+
+  const bodyEl = document.body;
+  const questBox = document.getElementById('quest-box');
+  const sandboxBadge = document.getElementById('sandbox-badge');
+
   if (mode === 'guided') {
     const guidedBtn = document.getElementById('btn-guided');
     if (guidedBtn) guidedBtn.classList.add('active');
+
+    bodyEl.classList.remove('free-mode-active');
+    if (questBox) questBox.style.display = 'block';
+    if (sandboxBadge) sandboxBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> SAFE TEST MODE — NO REAL MONEY USED';
   } else {
     const freeBtn = document.getElementById('btn-free');
     if (freeBtn) freeBtn.classList.add('active');
+
+    bodyEl.classList.add('free-mode-active');
+    if (questBox) questBox.style.display = 'none';
+    if (sandboxBadge) sandboxBadge.innerHTML = '<i class="fa-solid fa-gamepad"></i> FREE PRACTICE MODE ACTIVE';
   }
 }
 
 // Initialize Default State on Page Load
 document.addEventListener('DOMContentLoaded', () => {
   loadScenario('banking');
-});S
+});
